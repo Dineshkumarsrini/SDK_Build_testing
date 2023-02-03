@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
 }
+apply plugin: 'maven-publish'
 
 android {
     compileSdk 32
@@ -23,6 +24,37 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+def getVersionName = { ->
+    return "2.3.16" // Replace with version Name
+}
+
+def getArtificatId = { ->
+    return "app" // Replace with library name ID
+}
+publishing {
+    publications {
+        bar(MavenPublication) {
+            groupId 'com.sample.test' // Replace with group ID
+            artifactId getArtificatId()
+            version getVersionName()
+            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+        }
+    }
+    repositories{
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/manojKumar-L/SampleLibrary")
+            credentials(HttpHeaderCredentials) {
+                name = 'Authorization'
+                value = "Bearer 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"
+            }
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
     }
 }
 
