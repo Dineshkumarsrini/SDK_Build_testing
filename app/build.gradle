@@ -28,11 +28,11 @@ android {
 }
 
 def getVersionName = { ->
-    return "2.0.0" // Replace with version Name
+    return "2.3.16" // Replace with version Name
 }
 
 def getArtificatId = { ->
-    return "sampleAndroidLib" // Replace with library name ID
+    return "app" // Replace with library name ID
 }
 publishing {
     publications {
@@ -49,7 +49,7 @@ publishing {
             url = uri("https://maven.pkg.github.com/manojKumar-L/SampleLibrary")
             credentials(HttpHeaderCredentials) {
                 name = 'Authorization'
-                value = "Bearer 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"
+                value = "Bearer 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"
             }
             authentication {
                 header(HttpHeaderAuthentication)
